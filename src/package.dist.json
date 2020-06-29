@@ -1,0 +1,9 @@
+{
+  "name": "@harpokrat/client",
+  "version": "0.0.2",
+  "main": "bundles/harpokrat-client.js",
+  "typings": "index.d.ts",
+  "dependencies": {
+    "@harpokrat/hcl": "^0.0.26"
+  }
+}
