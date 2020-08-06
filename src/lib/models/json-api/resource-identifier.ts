@@ -4,7 +4,7 @@ export interface IResourceIdentifier {
 
   type: string;
 
-  id: string;
+  id?: string;
 
   meta?: IMeta;
 }
