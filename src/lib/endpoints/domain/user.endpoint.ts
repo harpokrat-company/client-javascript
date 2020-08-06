@@ -9,7 +9,7 @@ export interface IUserEndpoint extends IResourceEndpoint<IUser> {
 
 export class UserEndpoint extends ResourceEndpoint<IUser> {
 
-    constructor($api: IHarpokratApi) {
-        super($api, 'users');
+    constructor(api: IHarpokratApi) {
+        super(api, 'users');
     }
 }

@@ -9,7 +9,7 @@ export interface ISecretEndpoint extends IResourceEndpoint<ISecret> {
 
 export class SecretEndpoint extends ResourceEndpoint<ISecret> {
 
-    constructor($api: IHarpokratApi) {
-        super($api, 'secrets');
+    constructor(api: IHarpokratApi) {
+        super(api, 'secrets');
     }
 }
