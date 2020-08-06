@@ -11,12 +11,13 @@ export class RecaptchaEndpoint extends Endpoint implements IRecaptchaEndpoint {
 
     constructor(
         api: IHarpokratApi,
+        path: string = 'recaptcha',
     ) {
-        super(api);
+        super(api, path);
     }
 
     read(): Promise<IRecaptchaResource> {
-        return this.request<IRecaptchaResource>('recaptcha', {
+        return this.request<IRecaptchaResource>(this.path, {
             method: 'GET',
             hasAuth: false,
         })

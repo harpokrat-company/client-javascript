@@ -13,8 +13,9 @@ export class JsonWebTokensEndpoint extends Endpoint implements IJsonWebTokensEnd
 
     constructor(
         api: IHarpokratApi,
+        path: string = 'json-web-tokens',
     ) {
-        super(api)
+        super(api, path)
     }
 
     async create(): Promise<ITokenResource> {
@@ -23,7 +24,7 @@ export class JsonWebTokensEndpoint extends Endpoint implements IJsonWebTokensEnd
         }
         const {email, password} = this.api.auth;
         const basicAuth = await this.api.hclw.getBasicAuth(email, password);
-        return this.request<ITokenResource>('json-web-tokens', {
+        return this.request<ITokenResource>(this.path, {
             method: 'POST',
             hasAuth: false,
             headers: {

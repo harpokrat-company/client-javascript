@@ -9,7 +9,7 @@ export interface ISecureActionEndpoint extends IResourceEndpoint<ISecureAction> 
 
 export class SecureActionEndpoint extends ResourceEndpoint<ISecureAction> {
 
-    constructor(api: IHarpokratApi) {
-        super(api, 'secure-actions');
+    constructor(api: IHarpokratApi, path: string = 'secure-actions') {
+        super(api, path);
     }
 }

@@ -6,18 +6,27 @@ export interface IEndpointRequestOption {
     meta?: IMeta;
 }
 
-export class Endpoint implements IEndpoint {
+export abstract class Endpoint implements IEndpoint {
+
+    get path(): string {
+        return this.$path;
+    }
 
     get api(): IHarpokratApi {
         return this.$api;
     }
 
-    constructor(
+    protected constructor(
         private readonly $api: IHarpokratApi,
+        private readonly $path: string,
     ) {
     }
 
-    async request<T extends IPrimaryData<any>>(url: string, requestOptions: IRequestOptions, options: IEndpointRequestOption = {}): Promise<T> {
+    protected resolvePath(...path: string[]) {
+        return [this.path, path].join('/');
+    }
+
+    async request<T extends IPrimaryData<any>>(url: string, requestOptions: IRequestOptions = {}, options: IEndpointRequestOption = {}): Promise<T> {
         const body = requestOptions.body;
         if (body != null) {
             requestOptions.body = {

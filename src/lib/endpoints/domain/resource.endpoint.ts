@@ -7,17 +7,13 @@ export class ResourceEndpoint<T> extends Endpoint implements IResourceEndpoint<T
 
     constructor(
         api: IHarpokratApi,
-        private readonly $path: string,
+        path: string,
     ) {
-        super(api);
-    }
-
-    private resolvePath(path: string) {
-        return this.$path + '/' + path;
+        super(api, path);
     }
 
     async create(resource: IResource<T>, options?: IEndpointRequestOption): Promise<IResource<T>> {
-        return this.request<IResource<T>>(this.$path, {
+        return this.request<IResource<T>>(this.path, {
             method: 'POST',
             body: resource,
         });
@@ -49,7 +45,7 @@ export class ResourceEndpoint<T> extends Endpoint implements IResourceEndpoint<T
         if (sort) {
             searchParams['sort'] = sortDescending ? `-${sort}` : sort;
         }
-        return this.request<IResource<T>[]>(this.$path, {
+        return this.request<IResource<T>[]>(this.path, {
             method: 'GET',
             searchParams,
         });
