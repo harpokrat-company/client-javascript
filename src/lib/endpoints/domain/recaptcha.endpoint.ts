@@ -1,11 +1,10 @@
-import {IRecaptcha} from '../../models/domain/attributes/recaptcha';
-import {IHarpokratApi, IResource} from '../../..';
+import {IHarpokratApi} from '../../..';
 import {Endpoint} from './endpoint';
 import {IRecaptchaResource} from '../../models/domain/resources';
 
 export interface IRecaptchaEndpoint {
 
-    read(): Promise<IResource<IRecaptcha>>;
+    read(): Promise<IRecaptchaResource>;
 }
 
 export class RecaptchaEndpoint extends Endpoint implements IRecaptchaEndpoint {
