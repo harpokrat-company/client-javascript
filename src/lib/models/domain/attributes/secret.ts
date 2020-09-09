@@ -1,5 +1,7 @@
 export interface ISecret {
 
-  content: string;
+    content: string;
+
+    private: boolean;
 
 }

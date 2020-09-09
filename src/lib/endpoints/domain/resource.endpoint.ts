@@ -12,18 +12,26 @@ export class ResourceEndpoint<T> extends Endpoint implements IResourceEndpoint<T
         super(api, path);
     }
 
+    resource<U>(id: string, resourceName: string): IResourceEndpoint<U> {
+        return new ResourceEndpoint<U>(this.api, this.resolvePath(id, resourceName));
+    }
+
+    relationship(id: string, relationshipName: string): IResourceEndpoint<void> {
+        return new ResourceEndpoint<void>(this.api, this.resolvePath(id, 'relationships', relationshipName));
+    }
+
     async create(resource: IResource<T>, options?: IEndpointRequestOption): Promise<IResource<T>> {
         return this.request<IResource<T>>(this.path, {
             method: 'POST',
             body: resource,
-        });
+        }, options);
     }
 
     async delete(id: string, options?: IEndpointRequestOption): Promise<void> {
         const path = this.resolvePath(id);
         await this.request(path, {
             method: 'DELETE',
-        });
+        }, options);
     }
 
     async read(id: string): Promise<IResource<T>> {
@@ -33,7 +41,10 @@ export class ResourceEndpoint<T> extends Endpoint implements IResourceEndpoint<T
         });
     }
 
-    async readMany(pageable: IPageable = {page: 1, size: 20}): Promise<IResource<T>[]> {
+    async readMany(pageable: IPageable = {
+        page: 1,
+        size: 20
+    }): Promise<IResource<T>[]> {
         const {page, size, filters = {}, sort, sortDescending} = pageable;
         const searchParams: ISearchParams = {
             'page[number]': page.toFixed(0),
@@ -56,7 +67,7 @@ export class ResourceEndpoint<T> extends Endpoint implements IResourceEndpoint<T
         return this.request<IResource<T>>(path, {
             method: 'PATCH',
             body: resource,
-        });
+        }, options);
     }
 
 }

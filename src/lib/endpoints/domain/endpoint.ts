@@ -23,7 +23,7 @@ export abstract class Endpoint implements IEndpoint {
     }
 
     protected resolvePath(...path: string[]) {
-        return [this.path, path].join('/');
+        return [this.path, ...path].join('/');
     }
 
     async request<T extends IPrimaryData<any>>(url: string, requestOptions: IRequestOptions = {}, options: IEndpointRequestOption = {}): Promise<T> {

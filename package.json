@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@harpokrat/hcl": "^0.0.26"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",

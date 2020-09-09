@@ -1,8 +1,11 @@
-import {IPageable} from '../..';
+import {IPageable, IResource} from '../..';
 import {IEndpointRequestOption} from './domain/endpoint';
-import {IResource} from '../..';
 
 export interface IResourceEndpoint<T> {
+
+    resource(id: string, resourceName: string): IResourceEndpoint<any>;
+
+    relationship(id: string, relationshipName: string): IResourceEndpoint<void>;
 
     create(resource: IResource<T>, options?: IEndpointRequestOption): Promise<IResource<T>>;
 

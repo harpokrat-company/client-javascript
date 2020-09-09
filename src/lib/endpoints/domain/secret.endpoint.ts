@@ -5,7 +5,7 @@ import {IGroup, ISecret, IUser} from '../../..';
 
 export interface ISecretEndpoint extends IResourceEndpoint<ISecret> {
 
-    ownerOf(id: string): IResourceEndpoint<IUser | IGroup | ISecret>;
+    resource(id: string, resourceName: 'owner'): IResourceEndpoint<IUser | IGroup | ISecret>;
 
 }
 
@@ -13,9 +13,5 @@ export class SecretEndpoint extends ResourceEndpoint<ISecret> implements ISecret
 
     constructor(api: IHarpokratApi, path: string = 'secrets') {
         super(api, path);
-    }
-
-    ownerOf(id: string): IResourceEndpoint<IUser | IGroup | ISecret> {
-        return new ResourceEndpoint<IUser | IGroup | ISecret>(this.api, this.resolvePath(id, 'relationships', 'owner'));
     }
 }
