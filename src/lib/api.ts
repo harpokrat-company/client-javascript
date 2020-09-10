@@ -45,6 +45,8 @@ export interface IHarpokratApiOptions {
     requester?: IRequester;
 
     apiUrl?: string;
+
+    hclw?: HclwService,
 }
 
 export class HarpokratApi implements IHarpokratApi {
@@ -83,7 +85,7 @@ export class HarpokratApi implements IHarpokratApi {
             options.apiUrl || 'https://api.harpokrat.com/v1/',
             this,
         );
-        this.hclw = new HclwService();
+        this.hclw = options.hclw || new HclwService();
         this.jsonWebTokens = new JsonWebTokensEndpoint(this);
         this.organizations = new OrganizationEndpoint(this);
         this.groups = new GroupEndpoint(this);

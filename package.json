@@ -12,9 +12,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
+    "@harpokrat/hcl": "^0.1.0"
   },
   "devDependencies": {
+    "@harpokrat/hcl": "^0.1.20",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
