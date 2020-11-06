@@ -1,6 +1,5 @@
-var path = require('path');
-var CopyPlugin = require('copy-webpack-plugin');
-var nodeExternals = require('webpack-node-externals');
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: 'production',
@@ -26,7 +25,12 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.m?js$/,
+                use: 'babel-loader',
+                exclude: /node_modules/,
+            },
         ]
     },
     plugins: []

@@ -1,8 +1,8 @@
 {
   "name": "@harpokrat/client",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "",
-  "main": "dist/index.ts",
+  "main": "bundles/harpokrat-client.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -16,8 +16,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
+    "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
     "copy-webpack-plugin": "^6.0.2",
     "mocha": "^8.0.1",
