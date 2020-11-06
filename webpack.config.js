@@ -29,13 +29,6 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new CopyPlugin({
-            patterns: [
-                {from: 'src/package.dist.json', to: '../package.json'},
-                {from: './README.md', to: '../README.md'}
-            ]
-        })
-    ]
+    plugins: []
 };
 

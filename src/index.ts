@@ -25,15 +25,19 @@ export {IUser} from './lib/models/domain/attributes/user';
 export {IVault} from './lib/models/domain/attributes/vault';
 
 export {
-    IGroupResource,
-    IOrganizationResource,
-    IRecaptchaResource,
-    ISecretResource,
-    ISecureActionResource,
-    ITokenResource,
-    IUserResource,
-    IVaultResource,
+	IGroupResource,
+	IOrganizationResource,
+	IRecaptchaResource,
+	ISecretResource,
+	ISecureActionResource,
+	ITokenResource,
+	IUserResource,
+	IVaultResource,
 } from './lib/models/domain/resources';
+
+export {IHclService} from './lib/hcl/hcl-service'
+
+export * as hcl from './lib/hcl/hcl-module'
 
 export {IError} from './lib/models/json-api/error';
 export {IJsonApi} from './lib/models/json-api/jsonapi';

@@ -1,8 +1,0 @@
-{
-  "name": "@harpokrat/client",
-  "version": "0.1.0",
-  "main": "bundles/harpokrat-client.js",
-  "typings": "index.d.ts",
-  "scripts": {
-  }
-}

@@ -2,7 +2,6 @@ import {IRequester} from './requester/requester';
 import {fetchRequester} from './requester/fetch-requester';
 import {IJsonWebTokensEndpoint, JsonWebTokensEndpoint} from './endpoints/domain/json-web-tokens.endpoint';
 import {makeWrappedRequester} from './requester/wrapped-requester';
-import {HclwService} from '@harpokrat/hcl';
 import {ISecretEndpoint, SecretEndpoint} from './endpoints/domain/secret.endpoint';
 import {ISecureActionEndpoint, SecureActionEndpoint} from './endpoints/domain/secure-action.endpoint';
 import {IUserEndpoint, UserEndpoint} from './endpoints/domain/user.endpoint';
@@ -10,89 +9,90 @@ import {IRecaptchaEndpoint, RecaptchaEndpoint} from './endpoints/domain/recaptch
 import {GroupEndpoint, IGroupEndpoint} from './endpoints/domain/group.endpoint';
 import {IVaultEndpoint, VaultEndpoint} from './endpoints/domain/vault.endpoint';
 import {IOrganizationEndpoint, OrganizationEndpoint} from './endpoints/domain/organization.endpoint';
+import {HclService, IHclService} from "./hcl/hcl-service";
 
 export interface IHarpokratCredentials {
 
-    readonly email: string;
+	readonly email: string;
 
-    readonly password: string;
+	readonly password: string;
 }
 
 export interface IHarpokratApi {
 
-    auth?: IHarpokratCredentials;
+	auth?: IHarpokratCredentials;
 
-    accessToken?: string;
+	accessToken?: string;
 
-    readonly jsonWebTokens: IJsonWebTokensEndpoint;
-    readonly groups: IGroupEndpoint;
-    readonly organizations: IOrganizationEndpoint;
-    readonly recaptcha: IRecaptchaEndpoint;
-    readonly secrets: ISecretEndpoint;
-    readonly secureActions: ISecureActionEndpoint;
-    readonly users: IUserEndpoint;
-    readonly vaults: IVaultEndpoint;
+	readonly jsonWebTokens: IJsonWebTokensEndpoint;
+	readonly groups: IGroupEndpoint;
+	readonly organizations: IOrganizationEndpoint;
+	readonly recaptcha: IRecaptchaEndpoint;
+	readonly secrets: ISecretEndpoint;
+	readonly secureActions: ISecureActionEndpoint;
+	readonly users: IUserEndpoint;
+	readonly vaults: IVaultEndpoint;
 
-    readonly requester: IRequester;
+	readonly requester: IRequester;
 
-    readonly hclw: HclwService;
+	readonly hcl: IHclService;
 }
 
 export interface IHarpokratApiOptions {
 
-    auth?: IHarpokratCredentials;
+	auth?: IHarpokratCredentials;
 
-    requester?: IRequester;
+	requester?: IRequester;
 
-    apiUrl?: string;
+	apiUrl?: string;
 
-    hclw?: HclwService,
+	hclWasmUrl?: string;
 }
 
 export class HarpokratApi implements IHarpokratApi {
 
-    // Endpoints
-    readonly jsonWebTokens: IJsonWebTokensEndpoint;
-    readonly groups: IGroupEndpoint;
-    readonly organizations: IOrganizationEndpoint;
-    readonly recaptcha: IRecaptchaEndpoint;
-    readonly secrets: ISecretEndpoint;
-    readonly secureActions: ISecureActionEndpoint;
-    readonly users: IUserEndpoint;
-    readonly vaults: IVaultEndpoint;
+	// Endpoints
+	readonly jsonWebTokens: IJsonWebTokensEndpoint;
+	readonly groups: IGroupEndpoint;
+	readonly organizations: IOrganizationEndpoint;
+	readonly recaptcha: IRecaptchaEndpoint;
+	readonly secrets: ISecretEndpoint;
+	readonly secureActions: ISecureActionEndpoint;
+	readonly users: IUserEndpoint;
+	readonly vaults: IVaultEndpoint;
 
-    // Token
-    accessToken?: string;
+	// Token
+	accessToken?: string;
 
-    // Requester
-    requester: IRequester;
+	// Requester
+	requester: IRequester;
 
-    // Auth
-    auth?: IHarpokratCredentials;
+	// Auth
+	auth?: IHarpokratCredentials;
 
-    // Hclw
-    readonly hclw: HclwService;
+	// Hcl
+	readonly hcl: IHclService;
 
-    private readonly $options: IHarpokratApiOptions;
+	private readonly $options: IHarpokratApiOptions;
 
-    constructor(
-        options: IHarpokratApiOptions = {},
-    ) {
-        this.$options = options;
-        this.auth = options.auth;
-        this.requester = makeWrappedRequester(
-            options.requester || fetchRequester,
-            options.apiUrl || 'https://api.harpokrat.com/v1/',
-            this,
-        );
-        this.hclw = options.hclw || new HclwService();
-        this.jsonWebTokens = new JsonWebTokensEndpoint(this);
-        this.organizations = new OrganizationEndpoint(this);
-        this.groups = new GroupEndpoint(this);
-        this.recaptcha = new RecaptchaEndpoint(this);
-        this.secrets = new SecretEndpoint(this);
-        this.secureActions = new SecureActionEndpoint(this);
-        this.users = new UserEndpoint(this);
-        this.vaults = new VaultEndpoint(this);
-    }
+	constructor(
+		options: IHarpokratApiOptions = {},
+	) {
+		this.$options = options;
+		this.auth = options.auth;
+		this.requester = makeWrappedRequester(
+			options.requester || fetchRequester,
+			options.apiUrl || 'https://api.harpokrat.com/v1/',
+			this,
+		);
+		this.hcl = new HclService(options.hclWasmUrl || 'https://static.harpokrat.com/hcl/hcl2.wasm');
+		this.jsonWebTokens = new JsonWebTokensEndpoint(this);
+		this.organizations = new OrganizationEndpoint(this);
+		this.groups = new GroupEndpoint(this);
+		this.recaptcha = new RecaptchaEndpoint(this);
+		this.secrets = new SecretEndpoint(this);
+		this.secureActions = new SecureActionEndpoint(this);
+		this.users = new UserEndpoint(this);
+		this.vaults = new VaultEndpoint(this);
+	}
 }
