@@ -55,3 +55,17 @@ export {ISearchParams, IRequestOptions, IRequester, IHeaders} from './lib/reques
 export {makeWrappedRequester} from './lib/requester/wrapped-requester';
 
 export {IHarpokratApi, HarpokratApi, IHarpokratCredentials, IHarpokratApiOptions} from './lib/api';
+
+export {
+	ISymmetricKey,
+	ISecret as IHclSecret,
+	IUser as IHclUser,
+	IPassword,
+	IKeyPair,
+	IPointer,
+	IRsaKey,
+	IPrivateKey,
+	IPublicKey,
+	IHclModule,
+	IKey
+} from './lib/hcl/hcl-module';
