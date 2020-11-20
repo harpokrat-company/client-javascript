@@ -10,6 +10,7 @@ import {GroupEndpoint, IGroupEndpoint} from './endpoints/domain/group.endpoint';
 import {IVaultEndpoint, VaultEndpoint} from './endpoints/domain/vault.endpoint';
 import {IOrganizationEndpoint, OrganizationEndpoint} from './endpoints/domain/organization.endpoint';
 import {HclService, IHclService} from "./hcl/hcl-service";
+import {ILogEndpoint, LogEndpoint} from "./endpoints/domain/log.endpoint";
 
 export interface IHarpokratCredentials {
 
@@ -26,6 +27,7 @@ export interface IHarpokratApi {
 
 	readonly jsonWebTokens: IJsonWebTokensEndpoint;
 	readonly groups: IGroupEndpoint;
+	readonly logs: ILogEndpoint;
 	readonly organizations: IOrganizationEndpoint;
 	readonly recaptcha: IRecaptchaEndpoint;
 	readonly secrets: ISecretEndpoint;
@@ -54,6 +56,7 @@ export class HarpokratApi implements IHarpokratApi {
 	// Endpoints
 	readonly jsonWebTokens: IJsonWebTokensEndpoint;
 	readonly groups: IGroupEndpoint;
+	readonly logs: ILogEndpoint;
 	readonly organizations: IOrganizationEndpoint;
 	readonly recaptcha: IRecaptchaEndpoint;
 	readonly secrets: ISecretEndpoint;
@@ -89,6 +92,7 @@ export class HarpokratApi implements IHarpokratApi {
 		this.jsonWebTokens = new JsonWebTokensEndpoint(this);
 		this.organizations = new OrganizationEndpoint(this);
 		this.groups = new GroupEndpoint(this);
+		this.logs = new LogEndpoint(this);
 		this.recaptcha = new RecaptchaEndpoint(this);
 		this.secrets = new SecretEndpoint(this);
 		this.secureActions = new SecureActionEndpoint(this);

@@ -3,6 +3,7 @@ export {IPageable} from './lib/domain/pageable';
 
 export {IGroupEndpoint} from './lib/endpoints/domain/group.endpoint';
 export {IJsonWebTokensEndpoint} from './lib/endpoints/domain/json-web-tokens.endpoint';
+export {ILogEndpoint} from './lib/endpoints/domain/log.endpoint';
 export {IOrganizationEndpoint} from './lib/endpoints/domain/organization.endpoint';
 export {IRecaptchaEndpoint} from './lib/endpoints/domain/recaptcha.endpoint';
 export {ISecretEndpoint} from './lib/endpoints/domain/secret.endpoint';
@@ -16,6 +17,7 @@ export {IResourceEndpoint} from './lib/endpoints/resource-endpoint';
 export {HarpokratError} from './lib/errors/harpokrat-error';
 
 export {IGroup} from './lib/models/domain/attributes/group';
+export {ILog} from './lib/models/domain/attributes/log';
 export {IOrganization} from './lib/models/domain/attributes/organization';
 export {IRecaptcha} from './lib/models/domain/attributes/recaptcha';
 export {ISecret} from './lib/models/domain/attributes/secret';
@@ -26,6 +28,7 @@ export {IVault} from './lib/models/domain/attributes/vault';
 
 export {
 	IGroupResource,
+	ILogResource,
 	IOrganizationResource,
 	IRecaptchaResource,
 	ISecretResource,

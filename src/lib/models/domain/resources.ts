@@ -7,8 +7,10 @@ import {IUser} from './attributes/user';
 import {IGroup} from './attributes/group';
 import {IVault} from './attributes/vault';
 import {IOrganization} from './attributes/organization';
+import {ILog} from "./attributes/log";
 
 export type IGroupResource = IResource<IGroup>;
+export type ILogResource = IResource<ILog>;
 export type IOrganizationResource = IResource<IOrganization>;
 export type IRecaptchaResource = IResource<IRecaptcha>;
 export type ISecretResource = IResource<ISecret>;
