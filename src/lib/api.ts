@@ -88,7 +88,7 @@ export class HarpokratApi implements IHarpokratApi {
 			options.apiUrl || 'https://api.harpokrat.com/v1/',
 			this,
 		);
-		this.hcl = new HclService(options.hclWasmUrl || 'https://static.harpokrat.com/hcl/hcl2.wasm');
+		this.hcl = new HclService(options.hclWasmUrl || 'https://static.harpokrat.com/hcl/hcl4.wasm');
 		this.jsonWebTokens = new JsonWebTokensEndpoint(this);
 		this.organizations = new OrganizationEndpoint(this);
 		this.groups = new GroupEndpoint(this);

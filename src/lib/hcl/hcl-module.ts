@@ -42,6 +42,8 @@ export interface ISecret {
 
 	InitializeAsymmetricCipher(): void;
 
+	InitializePlainCipher(): void;
+
 	GetSecretTypeName(): string;
 }
 
@@ -49,7 +51,7 @@ export interface IKey extends ISecret {
 
 	GetOwner(): string;
 
-	SetOwner(): string;
+	SetOwner(key: string): void;
 }
 
 export interface IPrivateKey extends IKey {
