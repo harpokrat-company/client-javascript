@@ -15,5 +15,5 @@ export interface IResourceEndpoint<T> {
 
     update(id: string, resource: IResource<Partial<T>>, options?: IEndpointRequestOption): Promise<IResource<T>>;
 
-    delete(id: string, options?: IEndpointRequestOption): Promise<void>;
+    delete(data: string | T[], options?: IEndpointRequestOption): Promise<void>;
 }

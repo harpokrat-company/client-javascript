@@ -1,6 +1,6 @@
 {
   "name": "@harpokrat/client",
-  "version": "0.3.5",
+  "version": "0.4.1",
   "description": "",
   "main": "dist/bundles/harpokrat-client.js",
   "typings": "dist/index.d.ts",
